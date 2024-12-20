@@ -1,9 +1,12 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { createUser } from "../actions/userAction";
+import { useNavigate } from "react-router";
 
 function UserCreation() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     function onSubmit(event) {
         event.preventDefault(); // prevents page refresh
         const formData = new FormData(event.target);
@@ -11,7 +14,7 @@ function UserCreation() {
             firstName: formData.get("firstName"),
             lastName: formData.get("lastName")
         }));
-
+        navigate("/teamSelection");
     };
     return (
         <form onSubmit={onSubmit}>
