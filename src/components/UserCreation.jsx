@@ -1,11 +1,17 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { createUser } from "../actions/userAction";
 
 function UserCreation() {
+    const dispatch = useDispatch();
     function onSubmit(event) {
         event.preventDefault(); // prevents page refresh
         const formData = new FormData(event.target);
-        const firstName = formData.get("firstName");
-        // alert(firstName)
+        dispatch(createUser({
+            firstName: formData.get("firstName"),
+            lastName: formData.get("lastName")
+        }));
+
     };
     return (
         <form onSubmit={onSubmit}>
